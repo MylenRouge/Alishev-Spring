@@ -9,29 +9,30 @@
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
-    <bean id="musicBean"
-          class="spring.ClassicalMusic"
-          init-method="init"
-          destroy-method="destroy"
-          factory-method="getInstance">
-<!--    <constructor-arg value="Neil"/>  Переменная name в классе -->
-    </bean>
+<!--    <bean id="musicBean"-->
+<!--          class="spring.ClassicalMusic"-->
+<!--          init-method="init"-->
+<!--          destroy-method="destroy"-->
+<!--          factory-method="getInstance">-->
+<!--&lt;!&ndash;    <constructor-arg value="Neil"/>  Переменная name в классе &ndash;&gt;-->
+<!--    </bean>-->
 
-    <bean id="musicPlayer"
-          class="spring.MusicPlayer"
-          scope="prototype"
-          init-method="init"
-          destroy-method="destroy">
-        <property name="musicList">
-            <list>
-                <bean class="spring.ClassicalMusic"/>
-                <bean class="spring.RockMusic"/>
-                <bean class="spring.JazzMusic"/>
-                <bean class="spring.RapMusic"/>
-            </list>
-        </property>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+<!--    <bean id="musicPlayer"-->
+<!--          class="spring.MusicPlayer"-->
+<!--          scope="prototype"-->
+<!--          init-method="init"-->
+<!--          destroy-method="destroy">-->
+<!--        <property name="musicList">-->
+<!--            <list>-->
+<!--                <bean class="spring.ClassicalMusic"/>-->
+<!--                <bean class="spring.RockMusic"/>-->
+<!--                <bean class="spring.JazzMusic"/>-->
+<!--                <bean class="spring.RapMusic"/>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--        <property name="name" value="${musicPlayer.name}"/>-->
+<!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+<!--    </bean>-->
+    <context:component-scan base-package="spring"/>
 
 </beans>

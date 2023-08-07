@@ -1,19 +1,49 @@
 package spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MusicPlayer {
     private List<Music> musicList = new ArrayList<>();
+//    @Autowired
+//    @Qualifier("classicalMusic")
+    private Music music;
+    private Music music1;
+//    private ClassicalMusic classicalMusic;
+//    private RockMusic rockMusic;
     private String name;
     private int volume;
     public MusicPlayer() {
     }
 
+    @Autowired
+    public MusicPlayer(@Qualifier("rockMusic") Music music,
+                       @Qualifier("classicalMusic") Music music1) {
+        this.music = music;
+        this.music1 = music1;
+    }
+
+    //    @Autowired
+//    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic) {
+//        this.classicalMusic = classicalMusic;
+//        this.rockMusic = rockMusic;
+//    }
+
+    //    @Autowired
+//    public MusicPlayer(ClassicalMusic classicalMusic) {
+//        this.classicalMusic = classicalMusic;
+//    }
     // IoC
+
 //    public MusicPlayer(Music music) {
 //        this.music = music;
 //    }
+//    @Autowired
 //    public void setMusic(Music music) {
 //        this.music = music;
 //    }
@@ -47,9 +77,16 @@ public class MusicPlayer {
         System.out.println("Destroy");
     }
 
-    public void playMusic() {
-        for (Music music : musicList) {
-            System.out.println("Playing: " + music.getSong());
+    public void playMusic(MusicEnum musicEnum) {
+        if (musicEnum.equals(MusicEnum.CLASSICAL)) {
+            System.out.println(music1.getSong());
         }
+        if (musicEnum.equals(MusicEnum.ROCK)) {
+            System.out.println(music.getSong());
+        }
+//        return "Playing " + music.getSong() + ", " + music1.getSong();
+//        System.out.println("Playing: " + classicalMusic.getSong());
+//        System.out.println("Playing: " + rockMusic.getSong());
+//        System.out.println("Playing: " + music.getSong());
     }
 }
